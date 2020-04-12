@@ -8,7 +8,7 @@ public:
 
 	Wektor() {
 		for (int i = 0; i < sizeof(table) / sizeof(*table); i++) {
-			table[i] = 0;
+			table[i] = 0.0f;
 		}
 	}
 
@@ -37,52 +37,89 @@ public:
 		}
 	}
 
-	void operator = (Wektor w) {
+	Wektor& operator = (const Wektor& w) {
 		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
-			table[i] = w.table[i];
+			this->table[i] = w.table[i];
 		}
+		return *this;
 	}
 
-	Wektor operator + (Wektor w) {
-		Wektor temp;
+	Wektor operator + (const Wektor& w) {
+		Wektor<vec> temp;
 		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
 			temp.table[i] = table[i] + w.table[i];
 		}
 		return temp;
 	}
 
-	void operator += (Wektor w) {
+
+	Wektor& operator += (const Wektor& w) {
 		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
 			table[i] += w.table[i];
 		}
+		return *this;
 	}
 
-	Wektor operator - (Wektor w) {
-		Wektor temp;
+	Wektor operator - (const Wektor& w) {
+		Wektor<vec> temp;
 		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
 			temp.table[i] = table[i] - w.table[i];
 		}
 		return temp;
 	}
 
-	void operator -= (Wektor w) {
+	Wektor& operator -= (const Wektor& w) {
 		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
-			table[i] -= w.table[i];
+			table[i] += w.table[i];
 		}
+		return *this;
 	}
 
-	Wektor operator * (int c) {
-		Wektor temp;
+	Wektor operator * (const Wektor& w) {
+		Wektor<vec> temp;
 		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
-			temp.table[i] = table[i] * c;
+			temp.table[i] = table[i] * w.table[i];
 		}
 		return temp;
 	}
 
-	void operator *= (int c) {
-		for (int i = 0; i < sizeof(table) / sizeof(*table); i++) {
-			table[i] *= c;
+	Wektor& operator *= (const Wektor& w) {
+		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
+			table[i] += w.table[i];
 		}
+		return *this;
+	}
+
+	float getX() {
+		return table[0];
+	}
+
+	void setX(float x) {
+		table[0] = x;
+	}
+
+	float getY() {
+		return table[1];
+	}
+
+	void setY(float x) {
+		table[1] = x;
+	}
+
+	float getZ() {
+		return table[2];
+	}
+
+	void setZ(float x) {
+		table[2] = x;
+	}
+
+	float getW() {
+		return table[3];
+	}
+
+	void setW(float x) {
+		table[3] = x;
 	}
 
 private:
@@ -98,6 +135,6 @@ std::ostream & operator<<(std::ostream &os, Wektor<vec>& w) {
 		if (i + 1 < sizeof(w.table) / sizeof(*w.table))
 			os << ", ";
 	}
-	os << "]" << endl;
+	os << "]" << std::endl;
 	return os;
 }

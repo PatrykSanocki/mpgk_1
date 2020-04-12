@@ -96,8 +96,21 @@ void ProgramMPGK::stworzenieVAO()
 
 void ProgramMPGK::stworzenieVBO()
 {
+
+	Wektor<float[4]> wektor(-2.1f, -3.3f, -4.5f, -5.0f);
+
+	Wektor<float[4]> wektor2(2.2f, 3.2f, 4.5f, 5.1f);
+
+	Wektor<float[3]> wektor3(2.3f);
+	Wektor<float[3]> wektor4;
+	Wektor<float[3]> wektor5;
+
+	wektor5 += wektor3;
+	wektor = wektor + wektor2;
+
+	std::cout << wektor5;
 	GLfloat wierzcholki[] = {
-		-0.4f, -0.4f, 0.0f, 1.0f,
+		wektor.getX(), wektor.getY(), wektor.getZ(), wektor.getW(),
 		 1.0f,  0.0f, 0.0f, 1.0f,
 		 0.4f, -0.4f, 0.4f, 1.0f,
 		 0.0f,  1.0f, 0.0f, 1.0f,
@@ -115,7 +128,7 @@ void ProgramMPGK::stworzenieVBO()
 void ProgramMPGK::stworzenieIBO()
 {
 	GLuint indeksyTab[] = {
-		0, 1, 2, 1, 2, 3,
+		0, 1, 3, 1, 2, 3,
 	};
 
 	glGenBuffers(1, &IBO);

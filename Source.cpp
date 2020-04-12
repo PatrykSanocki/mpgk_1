@@ -101,12 +101,12 @@ void ProgramMPGK::stworzenieVBO()
 
 	Wektor<float[4]> wektor2(2.2f, 3.2f, 4.5f, 5.1f);
 
-	Wektor<float[3]> wektor3(2.3f);
-	Wektor<float[3]> wektor4;
-	Wektor<float[3]> wektor5;
+	Wektor<float[3]> wektor3(1.0f, 2.0f, 3.0f);
+	Wektor<float[3]> wektor4(2.0f, 2.0f, 1.0f);
+	Wektor<float[3]> wektor5 = wektor3.cross(wektor4);
 
-	wektor5 += wektor3;
-	wektor = wektor + wektor2;
+	std::cout << wektor5.scalar(wektor3) << std::endl;
+
 
 	std::cout << wektor5;
 	GLfloat wierzcholki[] = {

@@ -122,6 +122,22 @@ public:
 		table[3] = x;
 	}
 
+	float scalar(const Wektor& w) {
+		float sum = 0;
+		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
+			sum += table[i] * w.table[i];
+		}
+		return sum;
+	}
+
+	Wektor& cross(const Wektor& w) {
+		Wektor<vec> temp;
+		temp.table[0] = table[1] * w.table[2] - table[2] * w.table[1];
+		temp.table[1] = -(table[0] * w.table[2] - table[2] * w.table[0]);
+		temp.table[2] = table[2] * w.table[1] - table[1] * w.table[0];
+		return temp;
+	}
+
 private:
 	friend std::ostream & operator<<(std::ostream &os, const Wektor& w);
 

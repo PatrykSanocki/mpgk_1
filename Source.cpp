@@ -97,28 +97,26 @@ void ProgramMPGK::stworzenieVAO()
 void ProgramMPGK::stworzenieVBO()
 {
 
-	Wektor<float[4]> wektor(-2.1f, -3.3f, -4.5f, -5.0f);
+	Wektor<float[4]> w0(-0.4f, -0.4f, 0.0f, 1.0f);
+	Wektor<float[4]> w1(1.0f, 0.0f, 0.0f, 1.0f);
+	Wektor<float[4]> w2(0.4f, -0.4f, 0.4f, 1.0f);
+	Wektor<float[4]> w3(0.0f, 1.0f, 0.0f, 1.0f);
+	Wektor<float[4]> w4(-0.4f, 0.4f, 0.0f, 1.0f);
+	Wektor<float[4]> w5(0.0f, 0.0f, 1.0f, 1.0f);
+	Wektor<float[4]> w6(0.4f, 0.4f, 0.0f, 1.0f);
+	Wektor<float[4]> w7(0.5f, 0.5f, 0.0f, 1.0f);
 
-	Wektor<float[4]> wektor2(2.2f, 3.2f, 4.5f, 5.1f);
-
-	Wektor<float[3]> wektor3(1.0f, 2.0f, 3.0f);
-	Wektor<float[3]> wektor4(2.0f, 2.0f, 1.0f);
-	Wektor<float[3]> wektor5 = wektor3.cross(wektor4);
-
-	std::cout << wektor5.scalar(wektor3) << std::endl;
-
-
-	std::cout << wektor5;
 	GLfloat wierzcholki[] = {
-		wektor.getX(), wektor.getY(), wektor.getZ(), wektor.getW(),
-		 1.0f,  0.0f, 0.0f, 1.0f,
-		 0.4f, -0.4f, 0.4f, 1.0f,
-		 0.0f,  1.0f, 0.0f, 1.0f,
-		-0.4f,  0.4f, 0.0f, 1.0f,
-		 0.0f,  0.0f, 1.0f, 1.0f,
-		 0.4f,  0.4f, 0.0f, 1.0f,
-		 0.5f,  0.5f, 0.0f, 1.0f
+		w0.getX(), w0.getY(), w0.getZ(), w0.getW(),
+		w1.getX(), w1.getY(), w1.getZ(), w1.getW(),
+		w2.getX(), w2.getY(), w2.getZ(), w2.getW(),
+		w3.getX(), w3.getY(), w3.getZ(), w3.getW(),
+		w4.getX(), w4.getY(), w4.getZ(), w4.getW(),
+		w5.getX(), w5.getY(), w5.getZ(), w5.getW(),
+		w6.getX(), w6.getY(), w6.getZ(), w6.getW(),
+		w7.getX(), w7.getY(), w7.getZ(), w7.getW()
 	};
+
 
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -128,7 +126,7 @@ void ProgramMPGK::stworzenieVBO()
 void ProgramMPGK::stworzenieIBO()
 {
 	GLuint indeksyTab[] = {
-		0, 1, 3, 1, 2, 3,
+		0, 1, 2, 1, 2, 3,
 	};
 
 	glGenBuffers(1, &IBO);

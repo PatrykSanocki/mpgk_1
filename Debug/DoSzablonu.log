@@ -1,3 +1,2 @@
 ﻿  Source.cpp
-c:\users\patryk\source\repos\mpgk_template\wektor.h(138): warning C4172: returning address of local variable or temporary: temp
   DoSzablonu.vcxproj -> C:\Users\Patryk\source\repos\MPGK_Template\Debug\DoSzablonu.exe

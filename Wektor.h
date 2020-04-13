@@ -7,13 +7,13 @@ public:
 	vec table;
 
 	Wektor() {
-		for (int i = 0; i < sizeof(table) / sizeof(*table); i++) {
+		for (int i = 0; i < tabSize(); i++) {
 			table[i] = 0.0f;
 		}
 	}
 
 	Wektor(float val) {
-		for (int i = 0; i < sizeof(table) / sizeof(*table); i++) {
+		for (int i = 0; i < tabSize(); i++) {
 			table[i] = val;
 		}
 	}
@@ -32,13 +32,13 @@ public:
 	}
 
 	Wektor(vec tab) {
-		for (int i = 0; i < sizeof(table) / sizeof(*table); i++) {
+		for (int i = 0; i < tabSize(); i++) {
 			table[i] = tab[i];
 		}
 	}
 
 	Wektor& operator = (const Wektor& w) {
-		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
+		for (int i = 0; i < tabSize(); i++) {
 			this->table[i] = w.table[i];
 		}
 		return *this;
@@ -46,7 +46,7 @@ public:
 
 	Wektor operator + (const Wektor& w) {
 		Wektor<vec> temp;
-		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
+		for (int i = 0; i < tabSize(); i++) {
 			temp.table[i] = table[i] + w.table[i];
 		}
 		return temp;
@@ -54,7 +54,7 @@ public:
 
 
 	Wektor& operator += (const Wektor& w) {
-		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
+		for (int i = 0; i < tabSize(); i++) {
 			table[i] += w.table[i];
 		}
 		return *this;
@@ -62,30 +62,30 @@ public:
 
 	Wektor operator - (const Wektor& w) {
 		Wektor<vec> temp;
-		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
+		for (int i = 0; i < tabSize(); i++) {
 			temp.table[i] = table[i] - w.table[i];
 		}
 		return temp;
 	}
 
 	Wektor& operator -= (const Wektor& w) {
-		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
-			table[i] += w.table[i];
+		for (int i = 0; i < tabSize(); i++) {
+			table[i] -= w.table[i];
 		}
 		return *this;
 	}
 
-	Wektor operator * (const Wektor& w) {
+	Wektor operator * (const int& c) {
 		Wektor<vec> temp;
-		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
-			temp.table[i] = table[i] * w.table[i];
+		for (int i = 0; i < tabSize(); i++) {
+			temp.table[i] = table[i] * c;
 		}
 		return temp;
 	}
 
-	Wektor& operator *= (const Wektor& w) {
-		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
-			table[i] += w.table[i];
+	Wektor& operator *= (const int& c) {
+		for (int i = 0; i < tabSize(); i++) {
+			table[i] *= c;
 		}
 		return *this;
 	}
@@ -124,7 +124,7 @@ public:
 
 	float scalar(const Wektor& w) {
 		float sum = 0;
-		for (int i = 0; i < sizeof(w.table) / sizeof(*w.table); i++) {
+		for (int i = 0; i < tabSize(); i++) {
 			sum += table[i] * w.table[i];
 		}
 		return sum;
@@ -136,6 +136,24 @@ public:
 		temp.table[1] = -(table[0] * w.table[2] - table[2] * w.table[0]);
 		temp.table[2] = table[2] * w.table[1] - table[1] * w.table[0];
 		return temp;
+	}
+
+	Wektor& normalization() {
+		Wektor<vec> temp;
+		float length = 0;
+		for (int i = 0; i < sizeof(this->table) / sizeof(*this->table); i++) {
+			length += (this->table[i] * this->table[i]);
+		}
+		length = sqrt(length);
+
+		for (int i = 0; i < sizeof(this->table) / sizeof(*this->table); i++) {
+			temp.table[i] = this->table[i] / length;
+		}
+		return temp;
+	}
+
+	int tabSize() {
+		return sizeof(table) / sizeof(*table);
 	}
 
 private:

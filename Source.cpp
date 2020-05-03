@@ -111,7 +111,13 @@ void ProgramMPGK::stworzenieVBO()
 	m4 + m2;
 
 	m4 -= m2;
-
+	float matr[3][3] = {
+		10.0f, 6.0f, 7.0f,
+		3.0f, 9.0f, 1.0f,
+		5.0f, 5.0f, 5.0f };
+	Wektor<3> wek(9.0f, 5.0f, 5.0f);
+	Macierz<3> mac(matr);
+	mac * wek;
 	m4 * 5;
 	Wektor<4> w0(-0.4f, -0.4f, 0.0f, 1.0f);
 	Wektor<4> w1(1.0f, 0.0f, 0.0f, 1.0f);

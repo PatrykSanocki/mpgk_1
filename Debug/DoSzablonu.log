@@ -1,19 +1,4 @@
 ﻿  Source.cpp
-c:\users\patryk\source\repos\mpgk_template\macierz.h(118): error C2244: 'Macierz<L>::*': unable to match function definition to an existing declaration
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(118): note: see declaration of 'Macierz<L>::*'
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(118): note: definition
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(118): note: 'Macierz<L> &Macierz<L>::*(const Macierz<L> &)'
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(118): note: existing declarations
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(118): note: 'Macierz<L> Macierz<L>::*(const int &)'
-c:\users\patryk\source\repos\mpgk_template\macierz.h(128): error C2244: 'Macierz<L>::*=': unable to match function definition to an existing declaration
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(128): note: see declaration of 'Macierz<L>::*='
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(128): note: definition
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(128): note: 'void Macierz<L>::*=(const Macierz<L> &)'
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(128): note: existing declarations
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(128): note: 'void Macierz<L>::*=(const int &)'
-c:\users\patryk\source\repos\mpgk_template\macierz.h(137): error C2244: 'Macierz<L>::*': unable to match function definition to an existing declaration
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(137): note: see declaration of 'Macierz<L>::*'
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(137): note: definition
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(137): note: 'Macierz<L> &Macierz<L>::*(const Wektor<L> &)'
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(137): note: existing declarations
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(137): note: 'Macierz<L> Macierz<L>::*(const int &)'
+c:\users\patryk\source\repos\mpgk_template\macierz.h(67): warning C4172: returning address of local variable or temporary: temp
+c:\users\patryk\source\repos\mpgk_template\macierz.h(142): warning C4172: returning address of local variable or temporary: temp
+  DoSzablonu.vcxproj -> C:\Users\Patryk\source\repos\MPGK_Template\Debug\DoSzablonu.exe

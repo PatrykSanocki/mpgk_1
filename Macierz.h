@@ -9,16 +9,16 @@ public:
 	Macierz(float value);
 	Macierz(float matrix[L][L]);
 
-	Macierz<L>& Macierz::operator = (const Macierz& m);
-	Macierz<L>& Macierz::operator + (const Macierz& m);
-	void Macierz::operator += (const Macierz& m);
-	Macierz<L>& Macierz::operator - (const Macierz& m);
-	void Macierz::operator -= (const Macierz& m);
-	Macierz<L> Macierz::operator * (const int& c);
-	void  Macierz::operator *= (const int& c);
-	Macierz<L>& Macierz::operator * (const Macierz& m);
-	void Macierz::operator *= (const Macierz& m);
-	Macierz<L>& Macierz::operator * (const Wektor<L>& w);
+	Macierz<L>& operator = (const Macierz& m);
+	Macierz<L>& operator + (const Macierz& m);
+	void operator += (const Macierz& m);
+	Macierz<L>& operator - (const Macierz& m);
+	void operator -= (const Macierz& m);
+	Macierz<L> operator * (const int& c);
+	void  operator *= (const int& c);
+	Macierz<L>& operator * (const Macierz& m);
+	void operator *= (const Macierz& m);
+	Wektor<L>& operator * (const Wektor<L>& w);
 
 private:
 	friend std::ostream & operator<<(std::ostream &os, const Macierz& m);
@@ -73,7 +73,6 @@ void Macierz<L>::operator += (const Macierz<L>& m) {
 		for (int j = 0; j < L; j++) {
 			matrix[i][j] += m.matrix[i][j];
 		}
-	return *this;
 }
 
 template <int L>
@@ -111,7 +110,6 @@ void Macierz<L>::operator *= (const int& c) {
 		for (int j = 0; j < L; j++) {
 			matrix[i][j] *= c;
 		}
-	return *this;
 }
 
 template <int L>
@@ -130,10 +128,16 @@ void Macierz<L>::operator *= (const Macierz<L>& m) {
 		for (int j = 0; j < L; j++) {
 			matrix[i][j] *= m.matrix[i][j];
 		}
-	return *this;
 }
 
 template <int L>
-Macierz<L>& Macierz<L>::operator * (const Wektor<L>& w) {
-
+Wektor<L>& Macierz<L>::operator * (const Wektor<L>& w) {
+	Wektor<L> temp;
+	for (int i = 0; i < L; i++){
+		for (int j = 0; j < L; j++) {
+			temp.table[i] += matrix[i][j] * w.table[j];
+		}
+	std::cout << temp.table[i] << std::endl;
+	}
+	return temp;
 }

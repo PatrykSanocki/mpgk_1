@@ -7,6 +7,7 @@
 #include <GL/freeglut.h>
 #include <vector>
 #include "Wektor.h"
+#include "Macierz.h"
 
 class ProgramMPGK
 {

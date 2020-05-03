@@ -1,4 +1,5 @@
 #include "Header.h"
+#include "Macierz.h"
 
 GLuint ProgramMPGK::VAO;
 GLuint ProgramMPGK::VBO;
@@ -96,15 +97,34 @@ void ProgramMPGK::stworzenieVAO()
 
 void ProgramMPGK::stworzenieVBO()
 {
+	Macierz<3> m;
+	Macierz<3> m2(5.0f);
+	float mat[3][3] = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f };
+	Macierz<3> m3(mat);
 
-	Wektor<float[4]> w0(-0.4f, -0.4f, 0.0f, 1.0f);
-	Wektor<float[4]> w1(1.0f, 0.0f, 0.0f, 1.0f);
-	Wektor<float[4]> w2(0.4f, -0.4f, 0.4f, 1.0f);
-	Wektor<float[4]> w3(0.0f, 1.0f, 0.0f, 1.0f);
-	Wektor<float[4]> w4(-0.4f, 0.4f, 0.0f, 1.0f);
-	Wektor<float[4]> w5(0.0f, 0.0f, 1.0f, 1.0f);
-	Wektor<float[4]> w6(0.4f, 0.4f, 0.0f, 1.0f);
-	Wektor<float[4]> w7(0.5f, 0.5f, 0.0f, 1.0f);
+	Macierz<3> m4;
+	m4 = m3;
+
+	m4 + m2;
+
+	m4 -= m2;
+
+	m4 * 5;
+	Wektor<4> w0(-0.4f, -0.4f, 0.0f, 1.0f);
+	Wektor<4> w1(1.0f, 0.0f, 0.0f, 1.0f);
+	Wektor<4> w2(0.4f, -0.4f, 0.4f, 1.0f);
+	Wektor<4> w3(0.0f, 1.0f, 0.0f, 1.0f);
+	Wektor<4> w4(-0.4f, 0.4f, 0.0f, 1.0f);
+	Wektor<4> w5(0.0f, 0.0f, 1.0f, 1.0f);
+	Wektor<4> w6(0.4f, 0.4f, 0.0f, 1.0f);
+	Wektor<4> w7(0.5f, 0.5f, 0.0f, 1.0f);
+
+	Wektor<4> w8;
+	w8 = w0 + w7;
+	std::cout << w8;
 
 	GLfloat wierzcholki[] = {
 		w0.getX(), w0.getY(), w0.getZ(), w0.getW(),

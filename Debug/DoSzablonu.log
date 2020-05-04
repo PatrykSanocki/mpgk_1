@@ -1,4 +1,4 @@
 ﻿  Source.cpp
-c:\users\patryk\source\repos\mpgk_template\macierz.h(175): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\patryk\source\repos\mpgk_template\macierz.h(180): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\patryk\source\repos\mpgk_template\macierz.h(198): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\patryk\source\repos\mpgk_template\macierz.h(204): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   DoSzablonu.vcxproj -> C:\Users\Patryk\source\repos\MPGK_Template\Debug\DoSzablonu.exe

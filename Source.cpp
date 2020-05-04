@@ -105,6 +105,15 @@ void ProgramMPGK::stworzenieVBO()
 		7.0f, 8.0f, 9.0f };
 	Macierz<3> m3(mat);
 
+	m = m2 * m3;
+	std::cout << m << std::endl;
+
+	//std::cout << m2 << std::endl;
+	//std::cout << m3 << std::endl;
+
+	m2 *= m3;
+	std::cout << m2 << std::endl;
+
 	Macierz<3> m4;
 	m4 = m3;
 	m4 * m3;
@@ -126,6 +135,12 @@ void ProgramMPGK::stworzenieVBO()
 	//Macierz<3> mac(matr);
 	//mac * wek;
 	//m4 * 5;
+
+	Macierz<3> ide;
+	ide = m4.identity();
+	std::cout << ide << std::endl;
+
+
 
 	Wektor<4> w0(-0.4f, -0.4f, 0.0f, 1.0f);
 	Wektor<4> w1(1.0f, 0.0f, 0.0f, 1.0f);

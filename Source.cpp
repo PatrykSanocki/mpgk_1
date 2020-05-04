@@ -104,13 +104,15 @@ void ProgramMPGK::stworzenieVBO()
 		4.0f, 5.0f, 6.0f,
 		7.0f, 8.0f, 9.0f };
 
-	float mate[3][3] = {
-	3.0f, 2.0f, 3.0f,
-	4.0f, 3.0f, 6.0f,
-	7.0f, 8.0f, 1.0f };
+	float mate[5][5] = {
+	1.0f, 3.0f, 6.0f, 0.0f, 1.0f,
+	2.0f, 4.0f, 7.0f, 8.0f, 2.0f,
+	3.0f, 0.0f, 1.0f, 4.0f, 2.0f,
+	-2.0f, 1.0f, -4.0f, 5.0f, 4.0f,
+	2.0f, 1.0f, 1.0f, 0.0f, 4.0f, };
 
-	Macierz<3> original(mate);
-	Macierz<3> odwrot = original.invert();
+	Macierz<5> original;
+	Macierz<5> odwrot = original.invert();
 
 	std::cout << odwrot << std::endl;
 	Macierz<3> m3(mat);
@@ -137,14 +139,15 @@ void ProgramMPGK::stworzenieVBO()
 	//m4 + m2;
 
 	//m4 -= m2;
-	//float matr[3][3] = {
-	//	10.0f, 6.0f, 7.0f,
-	//	3.0f, 9.0f, 1.0f,
-	//	5.0f, 5.0f, 5.0f };
-	//Wektor<3> wek(9.0f, 5.0f, 5.0f);
-	//Macierz<3> mac(matr);
-	//mac * wek;
+	float matr[3][3] = {
+		10.0f, 6.0f, 7.0f,
+		3.0f, 9.0f, 1.0f,
+		5.0f, 5.0f, 5.0f };
+	Wektor<3> wek(9.0f, 5.0f, 5.0f);
+	Macierz<3> mac(matr);
+	Wektor<3> wek2 = mac * wek;
 	//m4 * 5;
+	std::cout << wek2 << std::endl;
 
 	Macierz<3> ide;
 	ide = m4.identity();

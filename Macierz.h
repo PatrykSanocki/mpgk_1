@@ -180,7 +180,7 @@ Wektor<L> Macierz<L>::operator * (const Wektor<L>& w)
 	{
 		for (int j = 0; j < L; j++) 
 		{
-			temp.macierz.table[i] += macierz.M[i][j] * w.table[j];
+			temp.table[i] += macierz.M[i][j] * w.table[j];
 		}
 	}
 	return temp;
@@ -217,13 +217,13 @@ float Macierz<L>::getter(int row, int col)
 
 float toDegree(float rad) 
 {
-	float degree = rad * 180 / PI;
+	float degree = rad * 180 / (float) PI;
 	return degree;
 }
 
 float toRadian(float deg) 
 {
-	float radian = deg * PI / 180;
+	float radian = deg * (float) PI / 180;
 	return radian;
 }
 
@@ -265,6 +265,7 @@ Macierz<L> Macierz<L>::identity()
 	return temp;
 }
 
+// utworzenie podmacierzy
 template <int L>
 Macierz<L - 1> getSubmatrix(Macierz<L> source, int row, int col)
 {
@@ -291,6 +292,18 @@ Macierz<L - 1> getSubmatrix(Macierz<L> source, int row, int col)
 	return destination;
 }
 
+// deklaracja funkcji, by była widziana przez kompilator w CalculateMinor
+template <int L>
+double calculateDeterminant(Macierz<L> mat);
+
+template <int L>
+double calculateMinor(Macierz<L> source, int row, int col)
+{
+	auto minorSubmatrix = getSubmatrix<L>(source, row, col);
+	return calculateDeterminant<L - 1>(minorSubmatrix);
+}
+
+// obliczanie wyznacznika
 template <int L>
 double calculateDeterminant(Macierz<L> mat)
 {
@@ -298,10 +311,10 @@ double calculateDeterminant(Macierz<L> mat)
 
 	for (int i = 0; i < L; i++)
 	{
-		// Get minor of element (0, i)
-		float minor = calculateMinor<L>(mat, 0, i);
+		// get Minora elementu (0, i)
+		float minor = (float) calculateMinor<L>(mat, 0, i);
 
-		// If this is an odd-numbered row, negate the value.
+		// Negacja wartości dla nieparzystego wiersza
 		float factor = (i % 2 == 1) ? -1.0f : 1.0f;
 
 		det += factor * mat.getter(0, i) * minor;
@@ -317,17 +330,10 @@ double calculateDeterminant<2>(Macierz<2> mat)
 }
 
 template <int L>
-double calculateMinor(Macierz<L> source, int row, int col)
-{
-	auto minorSubmatrix = getSubmatrix<L>(source, row, col);
-	return calculateDeterminant<L - 1>(minorSubmatrix);
-}
-
-template <int L>
 Macierz<L> Macierz<L>::invert()
 {
-	// Calculate the inverse of the determinant of m.
-	float det = calculateDeterminant<L>(*this);
+	// Obliczenie odwrotności wyznacznika dla m
+	float det = (float) calculateDeterminant<L>(*this);
 	float inverseDet = 1.0f / det;
 
 	Macierz<L> result;
@@ -335,11 +341,9 @@ Macierz<L> Macierz<L>::invert()
 	for (int j = 0; j < L; j++)
 		for (int i = 0; i < L; i++)
 		{
-			// Get minor of element (j, i) - not (i, j) because
-			// this is where the transpose happens.
-			float minor = calculateMinor<L>(*this, j, i);
+			float minor = (float) calculateMinor<L>(*this, j, i);
 
-			// Multiply by (−1)^{i+j}
+			// Mnożenie przez (-1)^(i+j)
 			float factor = ((i + j) % 2 == 1) ? -1.0f : 1.0f;
 			float cofactor = minor * factor;
 

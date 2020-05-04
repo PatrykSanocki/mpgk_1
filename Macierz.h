@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #define PI 3.14
 template <int L>
 struct Matrix {
@@ -32,7 +32,8 @@ public:
 
 	Macierz<L> transposition();
 	Macierz<L> identity();
-
+	Macierz<L> invert(const Macierz<L>& m);
+	Matrix<L - 1> getSubmatrix(Matrix<L> source, int row, int col);
 private:
 	friend std::ostream & operator<<(std::ostream &os, const Macierz& m);
 };
@@ -241,4 +242,88 @@ Macierz<L> Macierz<L>::identity()
 		}
 	}
 	return temp;
+}
+
+template <int L>
+Macierz<L - 1> getSubmatrix(Macierz<L> source, int row, int col)
+{
+	int colCount = 0, rowCount = 0;
+
+	Macierz<L - 1> destination;
+	for (int i = 0; i < L; i++)
+	{
+		if (i != row)
+		{
+			colCount = 0;
+			for (int j = 0; j < L; j++)
+			{
+				if (j != col)
+				{
+					destination.setter(rowCount, colCount, source.getter(i, j));
+					colCount++;
+				}
+			}
+			rowCount++;
+		}
+	}
+
+	return destination;
+}
+
+template <int L>
+double calculateDeterminant(Macierz<L> mat)
+{
+	float det = 0.0f;
+
+	for (int i = 0; i < L; i++)
+	{
+		// Get minor of element (0, i)
+		float minor = calculateMinor<L>(mat, 0, i);
+
+		// If this is an odd-numbered row, negate the value.
+		float factor = (i % 2 == 1) ? -1.0f : 1.0f;
+
+		det += factor * mat.getter(0, i) * minor;
+	}
+
+	return det;
+}
+
+template <>
+double calculateDeterminant<2>(Macierz<2> mat)
+{
+	return mat.getter(0, 0)* mat.getter(1, 1) - mat.getter(0, 1) * mat.getter(1, 0);
+}
+
+template <int L>
+double calculateMinor(Macierz<L> source, int row, int col)
+{
+	auto minorSubmatrix = getSubmatrix<L>(source, row, col);
+	return calculateDeterminant<L - 1>(minorSubmatrix);
+}
+
+template <int L>
+Macierz<L> Macierz<L>::invert(const Macierz<L>& m)
+{
+	// Calculate the inverse of the determinant of m.
+	float det = calculateDeterminant<L>(m);
+	float inverseDet = 1.0f / det;
+
+	Macierz<L> result;
+
+	for (int j = 0; j < L; j++)
+		for (int i = 0; i < L; i++)
+		{
+			// Get minor of element (j, i) - not (i, j) because
+			// this is where the transpose happens.
+			float minor = calculateMinor<L>(m, j, i);
+
+			// Multiply by (−1)^{i+j}
+			float factor = ((i + j) % 2 == 1) ? -1.0f : 1.0f;
+			float cofactor = minor * factor;
+
+			result.setter(i, j, inverseDet * cofactor);
+		}
+
+	return result;
 }

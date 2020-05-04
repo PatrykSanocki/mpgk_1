@@ -7,9 +7,10 @@ struct Matrix {
 template <int L>
 class Macierz
 {
+private:
 	Matrix<L> macierz;
+	friend std::ostream & operator<<(std::ostream &os, const Macierz& m);
 public:
-	//float matrix[L][L];
 	Macierz();
 	Macierz(float value);
 	Macierz(float matrix[L][L]);
@@ -32,100 +33,118 @@ public:
 
 	Macierz<L> transposition();
 	Macierz<L> identity();
-	Macierz<L> invert(const Macierz<L>& m);
-	Matrix<L - 1> getSubmatrix(Matrix<L> source, int row, int col);
-private:
-	friend std::ostream & operator<<(std::ostream &os, const Macierz& m);
+	Macierz<L> invert();
 };
 
 template <int L>
-Macierz<L>::Macierz() {
+Macierz<L>::Macierz() 
+{
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			macierz.M[i][j] = 0.0f;
 		}
 }
 
 template <int L>
-Macierz<L>::Macierz(float value) {
+Macierz<L>::Macierz(float value) 
+{
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			macierz.M[i][j] = value;
 		}
 }
 
 template <int L>
-Macierz<L>::Macierz(float mat[L][L]) {
+Macierz<L>::Macierz(float mat[L][L]) 
+{
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			macierz.M[i][j] = mat[i][j];
 		}
 }
 
 template <int L>
-void Macierz<L>::operator = (const Macierz<L>& m) {
+void Macierz<L>::operator = (const Macierz<L>& m) 
+{
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			macierz.M[i][j] = m.macierz.M[i][j];
 		}
 }
 
 template <int L>
-Macierz<L> Macierz<L>::operator + (const Macierz<L>& m) {
+Macierz<L> Macierz<L>::operator + (const Macierz<L>& m) 
+{
 	Macierz<L> temp;
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			temp.macierz.M[i][j] = macierz.M[i][j] + m.macierz.M[i][j];
 		}
 	return temp;
 }
 
 template <int L>
-void Macierz<L>::operator += (const Macierz<L>& m) {
+void Macierz<L>::operator += (const Macierz<L>& m) 
+{
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			macierz.M[i][j] += m.macierz.M[i][j];
 		}
 }
 
 template <int L>
-Macierz<L> Macierz<L>::operator - (const Macierz<L>& m) {
+Macierz<L> Macierz<L>::operator - (const Macierz<L>& m) 
+{
 	Macierz<L> temp;
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			temp.macierz.M[i][j] = macierz.M[i][j] - m.macierz.M[i][j];
 		}
 	return temp;
 }
 
 template <int L>
-void Macierz<L>::operator -= (const Macierz<L>& m) {
+void Macierz<L>::operator -= (const Macierz<L>& m) 
+{
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			macierz.M[i][j] -= m.macierz.M[i][j];
 		}
 }
 
 template <int L>
-Macierz<L> Macierz<L>::operator * (const int& c) {
+Macierz<L> Macierz<L>::operator * (const int& c) 
+{
 	Macierz<L> temp;
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			temp.macierz.M[i][j] = macierz.M[i][j] * c;
 		}
 	return temp;
 }
 
 template <int L>
-void Macierz<L>::operator *= (const int& c) {
+void Macierz<L>::operator *= (const int& c) 
+{
 	for (int i = 0; i < L; i++)
-		for (int j = 0; j < L; j++) {
+		for (int j = 0; j < L; j++) 
+		{
 			macierz.M[i][j] *= c;
 		}
 }
 
 template <int L>
-Macierz<L> Macierz<L>::operator * (const Macierz<L>& m) {
+Macierz<L> Macierz<L>::operator * (const Macierz<L>& m) 
+{
 	Macierz<L> temp;
 	for (int i = 0; i < L; i++)
 		for (int j = 0; j < L; j++) 
@@ -139,7 +158,8 @@ Macierz<L> Macierz<L>::operator * (const Macierz<L>& m) {
 }
 
 template <int L>
-void Macierz<L>::operator *= (const Macierz<L>& m) {
+void Macierz<L>::operator *= (const Macierz<L>& m) 
+{
 	Macierz<L> temp;
 	for (int i = 0; i < L; i++)
 		for (int j = 0; j < L; j++) 
@@ -153,7 +173,8 @@ void Macierz<L>::operator *= (const Macierz<L>& m) {
 }
 
 template <int L>
-Wektor<L> Macierz<L>::operator * (const Wektor<L>& w) {
+Wektor<L> Macierz<L>::operator * (const Wektor<L>& w) 
+{
 	Wektor<L> temp;
 	for (int i = 0; i < L; i++)
 	{
@@ -303,10 +324,10 @@ double calculateMinor(Macierz<L> source, int row, int col)
 }
 
 template <int L>
-Macierz<L> Macierz<L>::invert(const Macierz<L>& m)
+Macierz<L> Macierz<L>::invert()
 {
 	// Calculate the inverse of the determinant of m.
-	float det = calculateDeterminant<L>(m);
+	float det = calculateDeterminant<L>(*this);
 	float inverseDet = 1.0f / det;
 
 	Macierz<L> result;
@@ -316,7 +337,7 @@ Macierz<L> Macierz<L>::invert(const Macierz<L>& m)
 		{
 			// Get minor of element (j, i) - not (i, j) because
 			// this is where the transpose happens.
-			float minor = calculateMinor<L>(m, j, i);
+			float minor = calculateMinor<L>(*this, j, i);
 
 			// Multiply by (−1)^{i+j}
 			float factor = ((i + j) % 2 == 1) ? -1.0f : 1.0f;

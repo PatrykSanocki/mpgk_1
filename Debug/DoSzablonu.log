@@ -1,13 +1,13 @@
 ﻿  Source.cpp
-c:\users\patryk\source\repos\mpgk_template\macierz.h(199): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\patryk\source\repos\mpgk_template\macierz.h(205): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\patryk\source\repos\mpgk_template\macierz.h(309): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(307): note: while compiling class template member function 'Macierz<3> Macierz<3>::invert(const Macierz<3> &)'
-  c:\users\patryk\source\repos\mpgk_template\source.cpp(113): note: see reference to function template instantiation 'Macierz<3> Macierz<3>::invert(const Macierz<3> &)' being compiled
+c:\users\patryk\source\repos\mpgk_template\macierz.h(220): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\patryk\source\repos\mpgk_template\macierz.h(226): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\patryk\source\repos\mpgk_template\macierz.h(330): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  c:\users\patryk\source\repos\mpgk_template\macierz.h(328): note: while compiling class template member function 'Macierz<3> Macierz<3>::invert(void)'
+  c:\users\patryk\source\repos\mpgk_template\source.cpp(113): note: see reference to function template instantiation 'Macierz<3> Macierz<3>::invert(void)' being compiled
   c:\users\patryk\source\repos\mpgk_template\source.cpp(100): note: see reference to class template instantiation 'Macierz<3>' being compiled
-c:\users\patryk\source\repos\mpgk_template\macierz.h(319): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\patryk\source\repos\mpgk_template\macierz.h(281): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(309): note: see reference to function template instantiation 'double calculateDeterminant<3>(Macierz<3>)' being compiled
-  c:\users\patryk\source\repos\mpgk_template\macierz.h(307): note: while compiling class template member function 'Macierz<3> Macierz<3>::invert(const Macierz<3> &)'
-  c:\users\patryk\source\repos\mpgk_template\source.cpp(113): note: see reference to function template instantiation 'Macierz<3> Macierz<3>::invert(const Macierz<3> &)' being compiled
+c:\users\patryk\source\repos\mpgk_template\macierz.h(340): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\patryk\source\repos\mpgk_template\macierz.h(302): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  c:\users\patryk\source\repos\mpgk_template\macierz.h(330): note: see reference to function template instantiation 'double calculateDeterminant<3>(Macierz<3>)' being compiled
+  c:\users\patryk\source\repos\mpgk_template\macierz.h(328): note: while compiling class template member function 'Macierz<3> Macierz<3>::invert(void)'
+  c:\users\patryk\source\repos\mpgk_template\source.cpp(113): note: see reference to function template instantiation 'Macierz<3> Macierz<3>::invert(void)' being compiled
   DoSzablonu.vcxproj -> C:\Users\Patryk\source\repos\MPGK_Template\Debug\DoSzablonu.exe

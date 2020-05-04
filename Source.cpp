@@ -110,7 +110,7 @@ void ProgramMPGK::stworzenieVBO()
 	7.0f, 8.0f, 1.0f };
 
 	Macierz<3> original(mate);
-	Macierz<3> odwrot = m2.invert(m2);
+	Macierz<3> odwrot = original.invert();
 
 	std::cout << odwrot << std::endl;
 	Macierz<3> m3(mat);

@@ -1,5 +1,6 @@
 #include "Header.h"
 #include "Macierz.h"
+#include "Przeksztalcenia.h"
 
 GLuint ProgramMPGK::VAO;
 GLuint ProgramMPGK::VBO;
@@ -97,62 +98,144 @@ void ProgramMPGK::stworzenieVAO()
 
 void ProgramMPGK::stworzenieVBO()
 {
-	Macierz<3> m;
-	Macierz<3> m2(5.0f);
-	float mat[3][3] = {
-		1.0f, 2.0f, 3.0f,
-		4.0f, 5.0f, 6.0f,
-		7.0f, 8.0f, 9.0f };
+	//Macierz<3> m;
+	//Macierz<3> m2(5.0f);
+	//float mat[3][3] = {
+	//	1.0f, 2.0f, 3.0f,
+	//	4.0f, 5.0f, 6.0f,
+	//	7.0f, 8.0f, 9.0f };
 
-	float mate[5][5] = {
-	1.0f, 3.0f, 6.0f, 0.0f, 1.0f,
-	2.0f, 4.0f, 7.0f, 8.0f, 2.0f,
-	3.0f, 0.0f, 1.0f, 4.0f, 2.0f,
-	-2.0f, 1.0f, -4.0f, 5.0f, 4.0f,
-	2.0f, 1.0f, 1.0f, 0.0f, 4.0f, };
+	//float mate[5][5] = {
+	//1.0f, 3.0f, 6.0f, 0.0f, 1.0f,
+	//2.0f, 4.0f, 7.0f, 8.0f, 2.0f,
+	//3.0f, 0.0f, 1.0f, 4.0f, 2.0f,
+	//-2.0f, 1.0f, -4.0f, 5.0f, 4.0f,
+	//2.0f, 1.0f, 1.0f, 0.0f, 4.0f, };
 
-	Macierz<5> original;
-	Macierz<5> odwrot = original.invert();
+	//Macierz<5> original(mate);
+	//Macierz<5> odwrot = original.invert();
 
-	std::cout << odwrot << std::endl;
-	Macierz<3> m3(mat);
+	//std::cout << odwrot << std::endl;
+	//Macierz<3> m3(mat);
 
-	m = m2 * m3;
-	std::cout << m << std::endl;
+	//m = m2 * m3;
+	//std::cout << m << std::endl;
 
+	////std::cout << m2 << std::endl;
+	////std::cout << m3 << std::endl;
+
+	//m2 *= m3;
 	//std::cout << m2 << std::endl;
-	//std::cout << m3 << std::endl;
 
-	m2 *= m3;
-	std::cout << m2 << std::endl;
+	//Macierz<3> m4;
+	//m4 = m3;
+	//m4 * m3;
+	//Macierz<3> m5;
+	//m5 = m4 * m3;
 
-	Macierz<3> m4;
-	m4 = m3;
-	m4 * m3;
-	Macierz<3> m5;
-	m5 = m4 * m3;
+	////std::cout << m5 << std::endl;
+	////std::cout << m3 << std::endl;
+	////std::cout << m4 << std::endl;
 
-	//std::cout << m5 << std::endl;
-	//std::cout << m3 << std::endl;
-	//std::cout << m4 << std::endl;
+	////m4 + m2;
 
-	//m4 + m2;
+	////m4 -= m2;
+	//float matr[3][3] = {
+	//	10.0f, 6.0f, 7.0f,
+	//	3.0f, 9.0f, 1.0f,
+	//	5.0f, 5.0f, 5.0f };
+	//Wektor<3> wek(9.0f, 5.0f, 5.0f);
+	//Macierz<3> mac(matr);
+	//Wektor<3> wek2 = mac * wek;
+	////m4 * 5;
+	//std::cout << wek2 << std::endl;
 
-	//m4 -= m2;
-	float matr[3][3] = {
-		10.0f, 6.0f, 7.0f,
-		3.0f, 9.0f, 1.0f,
-		5.0f, 5.0f, 5.0f };
-	Wektor<3> wek(9.0f, 5.0f, 5.0f);
-	Macierz<3> mac(matr);
-	Wektor<3> wek2 = mac * wek;
-	//m4 * 5;
-	std::cout << wek2 << std::endl;
+	//Macierz<3> ide;
+	//ide = m4.identity();
+	//std::cout << ide << std::endl;
 
-	Macierz<3> ide;
-	ide = m4.identity();
-	std::cout << ide << std::endl;
 
+
+	Przeksztalcenia<3> scale3_1;
+	scale3_1.scale2D(1.0f);
+
+	std::cout << scale3_1.macierz << std::endl;
+
+
+	Przeksztalcenia<3> scale3_2;
+	scale3_2.scale2D(2.0f, 4.0f);
+
+	std::cout << scale3_2.macierz << std::endl;
+
+	float table[2] = { 3.0f, 5.0f };
+
+	Przeksztalcenia<3> scale3_3;
+	scale3_3.scale2D(table);
+
+	std::cout << scale3_3.macierz << std::endl;
+
+
+
+	//////////////////////////////////
+
+	Przeksztalcenia<3> translate3_1;
+	translate3_1.translate2D(1.0f);
+
+	std::cout << translate3_1.macierz << std::endl;
+
+
+	Przeksztalcenia<3> translate3_2;
+	translate3_2.translate2D(2.0f, 4.0f);
+
+	std::cout << translate3_2.macierz << std::endl;
+
+	Przeksztalcenia<3> translate3_3;
+	translate3_3.translate2D(table);
+
+	std::cout << translate3_3.macierz << std::endl;
+
+
+	//////////////////////////////////
+
+	Przeksztalcenia<4> scale4_1;
+	scale4_1.scale3D(1.0f);
+
+	std::cout << scale4_1.macierz << std::endl;
+
+
+	Przeksztalcenia<4> scale4_2;
+	scale4_2.scale3D(2.0f, 4.0f, -5.0f);
+
+	std::cout << scale4_2.macierz << std::endl;
+
+	float table2[3] = { 3.0f, 5.0f, -1.0f };
+
+	Przeksztalcenia<4> scale4_3;
+	scale4_3.scale3D(table2);
+
+	std::cout << scale4_3.macierz << std::endl;
+
+	//////////////////////////////////
+
+
+	Przeksztalcenia<4> translate4_1;
+	translate4_1.translate3D(1.0f);
+
+	std::cout << translate4_1.macierz << std::endl;
+
+
+	Przeksztalcenia<4> translate4_2;
+	translate4_2.translate3D(2.0f, 4.0f, -9.0f);
+
+	std::cout << translate4_2.macierz << std::endl;
+
+
+
+
+	Przeksztalcenia<4> translate4_3;
+	translate4_3.translate3D(table2);
+
+	std::cout << translate4_3.macierz << std::endl;
 
 
 	Wektor<4> w0(-0.4f, -0.4f, 0.0f, 1.0f);
@@ -163,17 +246,6 @@ void ProgramMPGK::stworzenieVBO()
 	Wektor<4> w5(0.0f, 0.0f, 1.0f, 1.0f);
 	Wektor<4> w6(0.4f, 0.4f, 0.0f, 1.0f);
 	Wektor<4> w7(0.5f, 0.5f, 0.0f, 1.0f);
-
-
-	//std::cout << m4 << std::endl;
-
-	Macierz<3> trans;
-
-	//std::cout << trans << std::endl;
-
-	trans = m4.transposition();
-
-	std::cout << trans << std::endl;
 
 	GLfloat wierzcholki[] = {
 		w0.getX(), w0.getY(), w0.getZ(), w0.getW(),

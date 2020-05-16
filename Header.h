@@ -8,6 +8,7 @@
 #include <vector>
 #include "Wektor.h"
 #include "Macierz.h"
+#include "Przeksztalcenia.h"
 
 class ProgramMPGK
 {

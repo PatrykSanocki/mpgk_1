@@ -114,6 +114,7 @@
   <ItemGroup>
     <ClInclude Include="Header.h" />
     <ClInclude Include="Macierz.h" />
+    <ClInclude Include="Przeksztalcenia.h" />
     <ClInclude Include="Wektor.h" />
   </ItemGroup>
   <ItemGroup>

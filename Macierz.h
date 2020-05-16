@@ -1,5 +1,7 @@
 ﻿#pragma once
-#define PI 3.14
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 template <int L>
 struct Matrix {
 	float M[L][L];
@@ -217,13 +219,13 @@ float Macierz<L>::getter(int row, int col)
 
 float toDegree(float rad) 
 {
-	float degree = rad * 180 / (float) PI;
+	float degree = rad * 180 / (float) M_PI;
 	return degree;
 }
 
 float toRadian(float deg) 
 {
-	float radian = deg * (float) PI / 180;
+	float radian = deg * (float) M_PI / 180;
 	return radian;
 }
 

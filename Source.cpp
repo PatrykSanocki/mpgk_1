@@ -100,10 +100,10 @@ void ProgramMPGK::stworzenieVBO()
 {
 	//Macierz<3> m;
 	//Macierz<3> m2(5.0f);
-	//float mat[3][3] = {
-	//	1.0f, 2.0f, 3.0f,
-	//	4.0f, 5.0f, 6.0f,
-	//	7.0f, 8.0f, 9.0f };
+	float mat[3][3] = {
+		1.0f, 2.0f, 0.0f,
+		4.0f, 5.0f, 0.0f,
+		0.0f, 0.0f, 1.0f };
 
 	//float mate[5][5] = {
 	//1.0f, 3.0f, 6.0f, 0.0f, 1.0f,
@@ -116,7 +116,7 @@ void ProgramMPGK::stworzenieVBO()
 	//Macierz<5> odwrot = original.invert();
 
 	//std::cout << odwrot << std::endl;
-	//Macierz<3> m3(mat);
+	Macierz<3> m3(mat);
 
 	//m = m2 * m3;
 	//std::cout << m << std::endl;
@@ -174,6 +174,10 @@ void ProgramMPGK::stworzenieVBO()
 
 	std::cout << scale3_3.macierz << std::endl;
 
+	Przeksztalcenia<3> rotate3;
+	rotate3.rotate2D(90.0f);
+	std::cout << "rotate" << std::endl;
+	std::cout << rotate3.macierz << std::endl;
 
 
 	//////////////////////////////////
@@ -183,6 +187,16 @@ void ProgramMPGK::stworzenieVBO()
 
 	std::cout << translate3_1.macierz << std::endl;
 
+	std::cout << "tW" << std::endl;
+
+
+
+
+	Wektor<3> tW(1.0f, 2.0f, 1.0f);
+
+	tW = translate3_1.macierz * tW;
+
+	std::cout << tW << std::endl;
 
 	Przeksztalcenia<3> translate3_2;
 	translate3_2.translate2D(2.0f, 4.0f);
@@ -214,6 +228,8 @@ void ProgramMPGK::stworzenieVBO()
 	scale4_3.scale3D(table2);
 
 	std::cout << scale4_3.macierz << std::endl;
+
+
 
 	//////////////////////////////////
 

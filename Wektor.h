@@ -130,7 +130,7 @@ public:
 		return sum;
 	}
 
-	Wektor& cross(const Wektor& w) {
+	Wektor cross(const Wektor& w) {
 		Wektor<L> temp;
 		temp.table[0] = table[1] * w.table[2] - table[2] * w.table[1];
 		temp.table[1] = -(table[0] * w.table[2] - table[2] * w.table[0]);
@@ -138,7 +138,7 @@ public:
 		return temp;
 	}
 
-	Wektor& normalization() {
+	Wektor normalization() {
 		Wektor<L> temp;
 		float length = 0;
 		for (int i = 0; i < L; i++) {
@@ -149,6 +149,7 @@ public:
 		for (int i = 0; i < L; i++) {
 			temp.table[i] = this->table[i] / length;
 		}
+		std::cout << temp << std::endl;
 		return temp;
 	}
 

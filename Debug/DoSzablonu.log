@@ -1,2 +1,3 @@
 ﻿  Source.cpp
+c:\users\patryk\source\repos\mpgk_template\source.cpp(65): warning C4930: 'Macierz<4> mac1(void)': prototyped function not called (was a variable definition intended?)
   DoSzablonu.vcxproj -> C:\Users\Patryk\source\repos\MPGK_Template\Debug\DoSzablonu.exe

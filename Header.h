@@ -24,6 +24,7 @@ private:
 	static GLuint vertexShaderId;
 	static GLuint fragmentShaderId;
 	static GLint zmiennaShader;
+	static GLint zmiennaShader1;
 
 public:
 	ProgramMPGK(void);

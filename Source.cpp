@@ -9,6 +9,7 @@ GLuint ProgramMPGK::programZShaderami;
 GLuint ProgramMPGK::vertexShaderId;
 GLuint ProgramMPGK::fragmentShaderId;
 GLint ProgramMPGK::zmiennaShader;
+GLint ProgramMPGK::zmiennaShader1;
 
 ProgramMPGK::ProgramMPGK(void)
 {
@@ -55,6 +56,16 @@ void ProgramMPGK::inicjalizacjaGlew()
 
 void  ProgramMPGK::wyswietl()
 {
+
+	float c[4][4] = {
+		{1.0f, 0.0f, 0.0f, 0.5f},
+		{0.0f, 1.0f, 0.0f, 0.2f},
+		{0.0f, 0.0f, 1.0f, 0.5f},
+		{0.0f, 0.0f, 0.0f, 1.0f} };
+	Macierz<4> mac1();
+	Przeksztalcenia<4> mac4;
+	mac4.rotate3D(45, 'z');
+
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
@@ -62,7 +73,8 @@ void  ProgramMPGK::wyswietl()
 
 	static GLfloat zmiana = 0.0f;
 	zmiana += 0.0005f;
-	glUniform1f(zmiennaShader, abs(sinf(zmiana)));
+	//glUniform1f(zmiennaShader, abs(sinf(zmiana)));
+	glUniformMatrix4fv(zmiennaShader1, 1, GL_TRUE, *mac4.macierz.getMacierz().M);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -165,6 +177,12 @@ void ProgramMPGK::stworzenieVBO()
 	Przeksztalcenia<3> scale3_2;
 	scale3_2.scale2D(2.0f, 4.0f);
 
+	Przeksztalcenia<3> test;
+	
+	Wektor<3> t(1.0f, 2.0f, 1.0f);
+	t = t.normalization();
+	std::cout << t << std::endl;
+
 	std::cout << scale3_2.macierz << std::endl;
 
 	float table[2] = { 3.0f, 5.0f };
@@ -253,6 +271,13 @@ void ProgramMPGK::stworzenieVBO()
 
 	std::cout << translate4_3.macierz << std::endl;
 
+//// rotate wektor
+
+	Wektor<3> RW(1.0f, 2.0f, -3.0f);
+	Przeksztalcenia<4> rotateW;
+	rotateW.rotate3D(45, RW);
+	std::cout << rotateW.macierz << std::endl;
+
 
 	Wektor<4> w0(-0.4f, -0.4f, 0.0f, 1.0f);
 	Wektor<4> w1(1.0f, 0.0f, 0.0f, 1.0f);
@@ -307,10 +332,12 @@ void ProgramMPGK::stworzenieProgramu()
 			layout(location=0) in vec4 polozenie; \n												\
 			layout(location=1) in vec4 kolorVS; \n													\
 			out vec4 kolorFS; \n																	\
-			uniform float zmianaShader; \n															\
+			//uniform float zmianaShader; \n															\
+			uniform mat4x4 macierz;																	\
 			void main()			 \n																	\
 			{		 \n																				\
-				gl_Position = vec4(zmianaShader * polozenie.x, zmianaShader * polozenie.y, zmianaShader * polozenie.z, polozenie.w); \n		\
+				//gl_Position = vec4(zmianaShader * polozenie.x, zmianaShader * polozenie.y, zmianaShader * polozenie.z, polozenie.w); \n		\
+				gl_Position = macierz * polozenie;																					\
 				kolorFS = kolorVS; \n																\
 			}";
 
@@ -362,10 +389,18 @@ void ProgramMPGK::stworzenieProgramu()
 
 	glUseProgram(programZShaderami);
 
-	zmiennaShader = glGetUniformLocation(programZShaderami, "zmianaShader");
-	if (zmiennaShader == -1)
+	//zmiennaShader = glGetUniformLocation(programZShaderami, "zmianaShader");
+	//if (zmiennaShader == -1)
+	//{
+	//	std::cerr << "Nie znalezion zmiennej uniform." << std::endl;
+	//	//system("pause");
+	//	exit(1);
+	//}
+
+	zmiennaShader1 = glGetUniformLocation(programZShaderami, "macierz");
+	if (zmiennaShader1 == -1)
 	{
-		std::cerr << "Nie znalezion zmiennej uniform." << std::endl;
+		std::cerr << "Nie znalezion zmiennej uniform1." << std::endl;
 		//system("pause");
 		exit(1);
 	}
